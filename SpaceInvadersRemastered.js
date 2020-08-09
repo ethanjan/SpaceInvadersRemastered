@@ -1,5 +1,5 @@
 //The images in the game are provided at the end of the program code.
-//This declares and initializes variables pertaining to the spaceship. I wrote this code.
+//This declares and initializes variables pertaining to the spaceship.
 var xSpaceShip = getXPosition("spaceShip");
 var ySpaceShip = getYPosition("spaceShip");
 var spaceShipHeight = getProperty("spaceShip", "height");
@@ -11,12 +11,12 @@ var yIsSpaceShipMoving = false;
 var theSpaceShipSpeed = 7;
 var spaceShipHP = 3;
 
-//This declares and initializes variables pertaining to the game state. I wrote this code.
+//This declares and initializes variables pertaining to the game state.
 var isGameOn = false;
 var round = 1;
 var points = 0;
 
-//This declares and initializes variables pertaining to the pellets. I wrote this code.
+//This declares and initializes variables pertaining to the pellets.
 var numPellets = 15;
 var deadPellets = 0;
 var canPelletsConnect = [];
@@ -33,7 +33,7 @@ for (var i = 0; i < 15; i++) {
   hideElement("pellet"+i);
 }
 
-//This declares and initializes variables pertaining to the enemy spaceships. I wrote this code.
+//This declares and initializes variables pertaining to the enemy spaceships.
 var xEnemySpaceShips = [];
 for (var i = 0; i < 10; i++) {
   appendItem(xEnemySpaceShips, randomNumber(0, 260));
@@ -54,7 +54,7 @@ for (var i = 0; i < enemySpaceShipsIdentification.length; i++) {
   setProperty(enemySpaceShipsIdentification[i], "width", 30);
   setPosition(enemySpaceShipsIdentification[i], xEnemySpaceShips[i], yEnemySpaceShips[i]);
 }
-//This actually begins the game. I wrote this code.
+//This actually begins the game.
 function startGame() {
   isGameOn = true;
   for (var i = 0; i < enemySpaceShipsIdentification.length; i++) {
@@ -63,7 +63,7 @@ function startGame() {
   startAnimation();
   playSound("sound://category_loops/vibrant_game_somethings_out_there_loop_1.mp3", true);
 }
-//This updates the positions of all of the game objects and does all the collision detection every 33 milliseconds. I wrote this code.
+//This updates the positions of all of the game objects and does all the collision detection every 33 milliseconds.
 function startAnimation() {
   timedLoop(33, function() {
     if (xIsSpaceShipMoving) {
@@ -118,7 +118,7 @@ function limit(lowerBound,upperBound, input) {
 function checkCollision(x1, y1, h1, w1, x2, y2, h2, w2) {
   return x1<x2+w2 && x1+w1>x2 && y1<y2+h2 && y1+h1>y2;
 }
-//This generates a pellet. I wrote this code.
+//This generates a pellet.
 function generatePellet() {
   if (numPellets > 0) {
     appendItem(pelletsSpeed, -3);
@@ -134,7 +134,7 @@ function generatePellet() {
     setText("pelletsLabel", "Pellets: " + numPellets);
   }
 }
-// This checks if any of the pellets are colliding with any of the enemy spaceships. I wrote this code.
+// This checks if any of the pellets are colliding with any of the enemy spaceships.
 function checkPelletCollision(j) {
   for (var i = 0; i < enemySpaceShipsIdentification.length; i++) {
     if (checkCollision(xPellets[j], yPellets[j], pelletHeight, pelletWidth, xEnemySpaceShips[i], yEnemySpaceShips[i], enemySpaceShipHeight, enemySpaceShipWidth) && canEnemySpaceShipsBeHit[i] == true && canPelletsConnect[j] == true) {
@@ -151,13 +151,13 @@ function checkPelletCollision(j) {
     }
   }
 }
-// This checks whether or not the pellets should reset. I wrote this code.
+// This checks whether or not the pellets should reset.
 function checkPellets() {
   if (pelletsIndex >= 15 && deadPellets >= 15) {
     resetPellets();
   }
 }
-// This resets all important properties of the pellets. I wrote this code.
+// This resets all important properties of the pellets.
 function resetPellets() {
   numPellets = 15;
   deadPellets = 0;
@@ -179,7 +179,7 @@ function startMovingEnemySpaceShips(i) {
   yEnemySpaceShipsSpeed[i] = randomNumber(1, 6)+round;
   areEnemySpaceShipsMoving[i]=true;
 }
-// This checks if an enemy spaceship is colliding with the spaceship and updates the spaceship's health if it is. I wrote this code.
+// This checks if an enemy spaceship is colliding with the spaceship and updates the spaceship's health if it is.
 function checkEnemySpaceShipCollision(i) {
     if (checkCollision(xSpaceShip, ySpaceShip, spaceShipHeight, spaceShipWidth, xEnemySpaceShips[i], yEnemySpaceShips[i], enemySpaceShipHeight, enemySpaceShipWidth) && canEnemySpaceShipsDamage[i] == true) {
       spaceShipHP--;
@@ -188,7 +188,7 @@ function checkEnemySpaceShipCollision(i) {
       playSound("sound://category_explosion/retro_game_classic_explosion_10.mp3", false);
     }
 }
-//This checks whether or not to reset the position of an enemy spaceship. It also checks whether or not to rebound the enemy spaceship off of the game screen. I wrote this code.
+//This checks whether or not to reset the position of an enemy spaceship. It also checks whether or not to rebound the enemy spaceship off of the game screen.
 function resetEnemySpaceShips(i) {
   if (yEnemySpaceShips[i] > 500) {
     xEnemySpaceShips[i] = randomNumber(0, 260);
@@ -201,7 +201,7 @@ function resetEnemySpaceShips(i) {
     xEnemySpaceShipsSpeed[i] = xEnemySpaceShipsSpeed[i] * -1;
   }
 }
-//This checks if the win condition has been reached. I wrote this code.
+//This checks if the win condition has been reached.
 function checkWin() {
   if (points >= 10) {
     stopSound("sound://category_explosion/retro_game_classic_explosion_10.mp3");
@@ -217,7 +217,7 @@ function checkWin() {
     }
   }
 }
-//This checks if the lose condition has been reached. I wrote this code.
+//This checks if the lose condition has been reached.
 function checkLose() {
   if (spaceShipHP <= 0) {
     setScreen("loseScreen");
@@ -226,7 +226,7 @@ function checkLose() {
     round=1;
   }
 }
-// This resets the everything about the game. I wrote this code.
+// This resets the everything about the game.
 function resetAll() {
   stopSound("sound://category_loops/vibrant_game_somethings_out_there_loop_1.mp3");
 
@@ -261,7 +261,7 @@ function resetAll() {
     showElement("enemySpaceShip"+i);
   }
 }
-//This event handler starts the game when the "b" key is pressed, and it also handles the movement of the spaceship and the firing of pellets from the spaceship. I wrote this code.
+//This event handler starts the game when the "b" key is pressed, and it also handles the movement of the spaceship and the firing of pellets from the spaceship.
 onEvent("gameScreen", "keydown", function(event) {
   if (event.key=="b" && isGameOn == false) {
     hideElement("instructionsLabel");
@@ -289,7 +289,7 @@ onEvent("gameScreen", "keydown", function(event) {
     }
   }
 });
-// This stops the spaceship after the key is no longer being pressed. I wrote this code.
+// This stops the spaceship after the key is no longer being pressed.
 onEvent("gameScreen", "keyup", function(event) {
   if (event.key=="Left" || event.key =="a" || event.key=="Right" || event.key == "d") {
     xIsSpaceShipMoving = false;
@@ -298,17 +298,17 @@ onEvent("gameScreen", "keyup", function(event) {
     yIsSpaceShipMoving = false;
   }
 });
-//This changes the screen and the round label when the "LosePlayAgainButton" is pressed. I wrote this code.
+//This changes the screen and the round label when the "LosePlayAgainButton" is pressed.
 onEvent("LosePlayAgainButton", "click", function() {
   setText("roundLabel", "Round: "+round);
   setScreen("gameScreen");
 });
-//This changes the screen and the round label when the "nextRoundButton" is pressed. I wrote this code.
+//This changes the screen and the round label when the "nextRoundButton" is pressed.
 onEvent("nextRoundButton", "click", function() {
   setText("roundLabel", "Round: "+round);
   setScreen("gameScreen");
 });
-//This changes the screen and the round label when the "WinPlayAgainButton" is pressed. I wrote this code.
+//This changes the screen and the round label when the "WinPlayAgainButton" is pressed.
 onEvent("WinPlayAgainButton", "click", function() {
   setText("roundLabel", "Round: "+round);
   setScreen("gameScreen");
