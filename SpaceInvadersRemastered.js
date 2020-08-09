@@ -102,7 +102,7 @@ function startAnimation() {
     checkPellets();
   });
 }
-//This limits a number so that it does not go past certain values. I found this code on the Internet.
+//This limits a number so that it does not go past certain values.
 function limit(lowerBound,upperBound, input) {
   var output;
   if (input < lowerBound) {
@@ -114,7 +114,7 @@ function limit(lowerBound,upperBound, input) {
   }
   return output;
 }
-// This checks whether or not two objects are colliding. My partner wrote this code.
+// This checks whether or not two objects are colliding.
 function checkCollision(x1, y1, h1, w1, x2, y2, h2, w2) {
   return x1<x2+w2 && x1+w1>x2 && y1<y2+h2 && y1+h1>y2;
 }
